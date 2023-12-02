@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+    postgresql-predictix:
+        image: postgres:latest
+        ports:
+            - 6001:5432
+        restart: "unless-stopped"
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=superSecretSecurePassword4
+            - POSTGRES_DB=dataset
+        volumes:
+            - predictixdata:/var/lib/postgresql/data
+        networks:
+            - predictix-network
+
+    api-predictix:
+        container_name: back
+        build:
+            context: api
+            dockerfile: Dockerfile.api
+        ports:
+            - 6000:3001
+            - 5555:5555
+        restart: "unless-stopped"
+        volumes:
+            - ./api:/app
+        networks:
+            - predictix-network
+        env_file:
+            - ./api/.env.api
+
+    front-predictix:
+        container_name: front
+        build:
+            context: front
+            dockerfile: Dockerfile.front
+        ports:
+            - 5001:3000
+        volumes:
+            - ./front:/app
+
+networks:
+    predictix-network:
+        driver: bridge
+
+volumes:
+    predictixdata:
+    predictix-app:

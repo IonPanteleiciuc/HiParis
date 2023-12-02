@@ -1,0 +1,19 @@
+# Base image
+FROM node:16-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json (if available)
+COPY package.json yarn.lock ./
+
+# Install dependencies
+RUN yarn install
+
+# Copy the app's source code
+COPY . .
+# Expose the port for the app
+EXPOSE 3000
+
+# Start the app
+CMD ["yarn", "start"]
