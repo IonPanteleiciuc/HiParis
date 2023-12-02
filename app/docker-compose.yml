@@ -20,7 +20,7 @@ services:
             context: api
             dockerfile: Dockerfile.api
         ports:
-            - 6000:3001
+            - 3000:3001
             - 5555:5555
         restart: "unless-stopped"
         volumes:
