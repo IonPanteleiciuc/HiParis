@@ -6,3 +6,4 @@ epi2022datadictionary.xlsx
 Variable-description-Hickathon-4.pdf
 app/front/.env*
 app/api/.env*
+app/dataset_clean.*
