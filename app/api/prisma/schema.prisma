@@ -18,7 +18,7 @@ model dataset {
   Country           Int
   Zone              Int
   Year              Int
-  Quarter_cumulated Int
+  Quarter_cumuled Int
   Quarter           Int
   Month_1           Int
   Month_2           Int

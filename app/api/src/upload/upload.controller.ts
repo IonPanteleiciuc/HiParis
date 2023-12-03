@@ -1,32 +1,39 @@
 import {
   Controller,
   Post,
-  UploadedFile,
   UseInterceptors,
+  UploadedFile,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { dataset } from '@prisma/client';
+import { parse } from 'csv-parse';
 import { PrismaService } from 'src/prisma/prisma.service';
-import Papa from 'papaparse';
 
-@Controller('upload')
+@Controller()
 export class UploadController {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
-  @Post()
+  @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    const text = file.buffer.toString('utf-8');
-    const results = Papa.parse(text, {
-      header: true,
-      skipEmptyLines: true,
+    if (!file) {
+      throw new HttpException('No file provided', HttpStatus.BAD_REQUEST);
+    }
+
+    // Create a stream from the file buffer
+    const parseStream = parse(file.buffer, {
+      columns: true,
+      trim: true,
     });
 
-    // for (const row of results.data) {
-    //   await this.prismaService.modelName.create({
-    //     data: row,
-    //   });
-    // }
+    // Handle each record
+    await this.prismaService.deleteAllRecords();
+    for await (const record of parseStream) {
+      await this.prismaService.addRecord(record);
+    }
 
-    return { results };
+    return { message: 'CSV has been processed' };
   }
 }
