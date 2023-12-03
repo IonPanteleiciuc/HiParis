@@ -10,3 +10,18 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model dataset {
+  id                Int @id @default(autoincrement())
+  id_product        Int
+  Region            Int
+  Country           Int
+  Zone              Int
+  Year              Int
+  Quarter_cumulated Int
+  Quarter           Int
+  Month_1           Int
+  Month_2           Int
+  Month_3           Int
+  Month_4           Int
+}

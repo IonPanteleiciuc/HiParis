@@ -7,7 +7,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as fs from 'fs';
-import * as parse from 'csv-parse';
+import { parse } from 'csv-parse';
 
 @Controller('upload')
 export class UploadController {
@@ -17,22 +17,19 @@ export class UploadController {
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
     const fileContents = fs.readFileSync(file.path, 'utf8');
-    const records = parse(fileContents, {
-      columns: true,
-      skip_empty_lines: true,
-    });
+    // const parser = parse(fileContents, {
+    //   columns: true,
+    //   skip_empty_lines: true,
+    // });
 
-    // Map and insert data into database
-    const data = records.map((record) => {
-      // Map each record to your Prisma model structure
-      return {
-        // ...mapped fields
-      };
-    });
+    // const records = [];
+    // for await (const record of parser) {
+    //   records.push(record);
+    // }
 
-    await this.prismaService.yourModel.createMany({ data });
+    // Your database operations here
 
-    fs.unlinkSync(file.path); // Optionally delete the file after processing
-    return 'CSV file processed and data stored in database';
+    // fs.unlinkSync(file.path);
+    return fileContents;
   }
 }

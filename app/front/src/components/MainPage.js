@@ -7,10 +7,11 @@ function MainPage() {
 	const [data, setData] = useState([]);
 
 	async function fetchData() {
-		console.log("url: ", PREDICTIX_URL);
-		const response = await axios.get(PREDICTIX_URL);
-		console.log("response: ", response);
-		setData(response.data);
+		// console.log("url: ", PREDICTIX_URL);
+		// const response = await axios.get(PREDICTIX_URL);
+		// console.log("response: ", response);
+		// setData(response.data);
+		console.log("Alles gut !");
 	}
 
 	useEffect(() => {
@@ -23,13 +24,16 @@ function MainPage() {
 		formData.append("file", file);
 
 		try {
-			await fetch("http://backend-url/upload", {
-				method: "POST",
-				body: formData,
-			});
+			const response = await axios.post(
+				PREDICTIX_URL + "/upload",
+				formData
+			);
+
 			// handle response
+			console.log("response from file upload: ", response.data);
 		} catch (error) {
 			// handle error
+			console.log("error: ", error);
 		}
 	};
 
