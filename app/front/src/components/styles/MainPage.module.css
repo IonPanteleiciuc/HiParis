@@ -1,0 +1,113 @@
+:root {
+	--blue: rgb(25, 69, 115);
+	--red: rgb(235, 52, 82);
+	--red-shadow: rgb(235, 52, 82, 0.2);
+	--white: rgb(251, 251, 251);
+	--font-size: 16px;
+}
+
+.container {
+	padding: 1rem;
+}
+
+.filters {
+	border: solid 2px green;
+	padding: 1rem;
+}
+
+.dashboardContainer {
+	display: flex; /* Use Flexbox */
+	flex-direction: column; /* Stack children vertically */
+	justify-content: center; /* Center vertically */
+	align-items: center; /* Center horizontally */
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	width: 100%;
+	margin: 0 auto; /* Center horizontally */
+}
+
+.dashboard {
+	border: var(--blue) solid 2px;
+	box-shadow: 0px 0px 5px var(--blue);
+	border-radius: 12px;
+	padding: 1rem;
+	margin-top: 1rem;
+	height: auto;
+	width: 80%;
+	align-items: center;
+}
+
+/* Add styles to the input button */
+.uploadButtonWrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.uploadButton {
+	background-color: var(--blue);
+	color: var(--white);
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	border-radius: 4px;
+	font-size: var(--font-size);
+	transition: background-color 0.3s ease-in-out;
+	display: inline-block;
+}
+
+.uploadButton:hover {
+	background-color: var(--red);
+}
+
+/* Style the file input to be transparent and positioned over the button */
+#file-upload {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+/* Add styles to the "Apply filters" button */
+.applyButton {
+	background-color: var(--blue);
+	color: var(--white);
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	border-radius: 4px;
+	font-size: var(--font-size);
+	transition: background-color 0.3s ease-in-out;
+}
+
+.applyButton:hover {
+	background-color: var(--red);
+}
+
+/* Add styles to the filter section */
+.filters {
+	border: 2px solid var(--blue);
+	padding: 1rem;
+	margin-top: 1rem;
+	border-radius: 4px;
+	background-color: var(--white);
+	box-shadow: 0px 0px 5px var(--blue);
+	display: flex;
+	align-items: center;
+	/* justify-content: space-between; */
+	margin-bottom: 20px;
+	width: fit-content;
+}
+
+/* Style the select elements */
+.filters select {
+	padding: 10px;
+	border: 2px solid var(--blue);
+	border-radius: 4px;
+	background-color: var(--white);
+	color: var(--blue);
+	font-size: var(--font-size);
+	margin-right: 10px;
+}

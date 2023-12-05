@@ -1,0 +1,46 @@
+:root {
+	--blue: rgb(25, 69, 115);
+	--red: rgb(235, 52, 82);
+	--red-shadow: rgb(235, 52, 82, 0.2);
+	--white: rgb(251, 251, 251);
+	--font-size: 16px;
+}
+body {
+	margin: 0;
+	padding: 0;
+}
+/* Header Styles */
+.container {
+	background-color: var(--blue); /* Background color */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	height: 4vw;
+}
+
+/* Logo Styles */
+.logo {
+	color: var(--red); /* Text color */
+	font-size: 40px; /* Font size */
+	text-decoration: solid;
+	font-family: "Pacifico", cursive; /* Font family */
+}
+
+/* Menu Styles */
+.menu {
+	display: flex;
+}
+
+.menu a {
+	text-decoration: none;
+	color: var(--red); /* Text color */
+	margin-left: 20px;
+	font-size: 28px; /* Font size */
+	font-family: Roboto, sans-serif; /* Font family */
+	transition: font-size 0.3s ease-in-out; /* Text size transition on hover */
+}
+
+.menu a:hover {
+	font-size: 32px; /* Larger text size on hover */
+}

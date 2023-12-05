@@ -50,9 +50,11 @@ const LineChartComponent = ({ data, quarter }) => {
 		3: ["September", "October", "November", "December"],
 	};
 
+	const limitedData = data.slice(0, 50);
+
 	const chartData = {
 		labels: labels[quarter],
-		datasets: data.map((row, index) => ({
+		datasets: limitedData.map((row, index) => ({
 			label: `Product ${row.id_product}`,
 			data: [row.Month_1, row.Month_2, row.Month_3, row.Month_4],
 			backgroundColor: colors[index % colors.length],
